@@ -1,0 +1,50 @@
+# Pre-commit hooks para validação de Terraform
+# Instalação: pip install pre-commit && pre-commit install
+# Execução manual: pre-commit run -a
+
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.83.0
+    hooks:
+      - id: terraform_fmt
+        name: Terraform Format
+        description: Formata arquivos Terraform
+        
+      - id: terraform_validate
+        name: Terraform Validate
+        description: Valida sintaxe Terraform
+        
+      - id: terraform_tflint
+        name: TFLint
+        description: Linting de Terraform
+        args:
+          - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
+        
+      - id: terraform_tfsec
+        name: tfsec Security Scan
+        description: Análise de segurança com tfsec
+        
+      - id: terraform_docs
+        name: Terraform Docs
+        description: Gera documentação de módulos
+        args:
+          - --args=--config=.terraform-docs.yml
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Remove espaços em branco trailing
+        
+      - id: end-of-file-fixer
+        name: Corrige fim de arquivo
+        
+      - id: check-yaml
+        name: Valida YAML
+        
+      - id: check-added-large-files
+        name: Previne arquivos grandes
+        args: ['--maxkb=1000']
+        
+      - id: detect-private-key
+        name: Detecta chaves privadas

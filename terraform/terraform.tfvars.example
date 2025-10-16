@@ -1,0 +1,29 @@
+# Exemplo de arquivo de variáveis
+# Copie para terraform.tfvars e ajuste conforme seu ambiente
+# ATENÇÃO: Nunca commite terraform.tfvars com dados sensíveis!
+
+environment = "dev"
+location    = "East US"
+app_name    = "mywebapp"
+
+sku = {
+  tier = "Basic"
+  size = "B1"
+}
+
+tags = {
+  ManagedBy   = "Terraform"
+  Project     = "WebApplication1"
+  CostCenter  = "Engineering"
+  Owner       = "DevOps Team"
+}
+
+# app_settings são sensíveis - use variáveis de ambiente ou Azure Key Vault
+# app_settings = {
+#   "ASPNETCORE_ENVIRONMENT" = "Development"
+#   "CustomSetting"          = "value"
+# }
+
+enable_monitoring = true
+enable_https_only = true
+min_tls_version   = "1.2"
